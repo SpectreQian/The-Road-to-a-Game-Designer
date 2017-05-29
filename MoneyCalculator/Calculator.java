@@ -99,6 +99,7 @@ public class Calculator extends JFrame {
 		String[] targets = {"-100","-10","1","10","100","1000","10000","100000","1000000"};
 		target = new JComboBox(targets);
 		target.setMaximumRowCount(4);
+		target.setEditable(true);
 		Panel.add(target);
 		
 		// Make MyFrame Visible
