@@ -8,11 +8,13 @@ import java.text.NumberFormat;
 
 public class Calculator extends JFrame {
 	JButton button1;
-	JLabel label1, label2, label3;
+	JLabel label1, label2, label3, label4;
 	JTextField textField1, textField2;
 	JCheckBox dollarSign, commaSeparator;
 	JRadioButton addNums, subtractNums, multNums, divideNums;
 	JSlider howManyTimes;
+	JComboBox target;
+	
 	
 	double number1, number2, totalCalc;
 	
@@ -91,6 +93,14 @@ public class Calculator extends JFrame {
 		howManyTimes.addChangeListener(lForSlider);
 		Panel.add(howManyTimes);
 		
+		// create target label and combo box
+		label4 = new JLabel("Select your target vaule: ");
+		Panel.add(label4);
+		String[] targets = {"-100","-10","1","10","100","1000","10000","100000","1000000"};
+		target = new JComboBox(targets);
+		target.setMaximumRowCount(4);
+		Panel.add(target);
+		
 		// Make MyFrame Visible
 		this.add(Panel);
 		this.setVisible(true);
@@ -134,6 +144,20 @@ public class Calculator extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(Calculator.this, totalCalc, "Solution", JOptionPane.INFORMATION_MESSAGE);
 				}
+				if (addNums.isSelected() || multNums.isSelected()){
+					if (totalCalc >= Integer.valueOf((String) target.getSelectedItem())){
+						JOptionPane.showMessageDialog(Calculator.this, "Your target is achieved!", "Congrats!", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(Calculator.this, "Your target is not achieved!", "Sorry!", JOptionPane.WARNING_MESSAGE);
+					}
+				} else {
+					if (totalCalc <= Integer.valueOf((String) target.getSelectedItem())){
+						JOptionPane.showMessageDialog(Calculator.this, "Your target is achieved!", "Congrats!", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(Calculator.this, "Your target is not achieved!", "Sorry!", JOptionPane.WARNING_MESSAGE);
+					}
+				}
+				
 			}
 			
 		}
